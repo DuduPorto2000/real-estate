@@ -4,6 +4,8 @@ import br.edu.ifpb.padroes.domain.Apartment;
 import br.edu.ifpb.padroes.domain.Bungalow;
 import br.edu.ifpb.padroes.domain.Tenement;
 import br.edu.ifpb.padroes.payment.PaymentService;
+import br.edu.ifpb.padroes.domain.MultiplePayments;
+
 
 public class Main {
     public static void main(String[] args) {
@@ -23,13 +25,12 @@ public class Main {
         bungalow.setBuilder("CortiÃ§o construtura");
         bungalow.setPrice(100000);
 
+
+     // TODO - reduzir chamadas múltiplas para uma única chamada para o método pay() utilizando o padrão composite
+     
+        MultiplePayments multiplePayments = new MultiplePayments(apartment, bungalow, tenament);
+
         PaymentService paymentService = new PaymentService();
-
-        // TODO - reduzir chamadas mÃºltiplas para uma Ãºnica chamada para o mÃ©todo pay() utilizando o padrÃ£o composite
-        paymentService.pay(apartment);
-        paymentService.pay(bungalow);
-        paymentService.pay(tenament);
-
-
+        paymentService.pay(multiplePayments);
     }
 }

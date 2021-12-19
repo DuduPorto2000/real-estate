@@ -12,10 +12,11 @@ public class PaymentService {
         RealEstatePayment realEstatePayment = new RealEstatePayment();
         PropertyPayment propertyPayment = new PropertyPayment();
 
-        // TODO - implementar Chain of Responsibility para que ordem dos m√©todos de pagamento seja din√¢mica (definida em tempo de execu√ß√£o)
+     // TODO - implementar Chain of Responsibility para que ordem dos mÈtodos de pagamento seja din‚mica (definida em tempo de execuÁ„o)
+      
+        governmentTaxesPayment.setNextProcessor(realEstatePayment);
+        realEstatePayment.setNextProcessor(propertyPayment);
         governmentTaxesPayment.process(sale);
-        realEstatePayment.process(sale);
-        propertyPayment.process(sale);
 
     }
 
